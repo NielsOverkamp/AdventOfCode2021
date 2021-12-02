@@ -62,7 +62,6 @@ impl Runner {
                             day.input_file_url().as_str(),
                             day.input_file_path(),
                         )?;
-                        process::Command::new("git").args(&["add", day.input_file_path().as_str()]).status()?;
                         return Ok(());
                     }
                     Some(false) | None => Ok(())

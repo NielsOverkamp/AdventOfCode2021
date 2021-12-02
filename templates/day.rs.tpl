@@ -1,4 +1,4 @@
-use aoc2020_niels_overkamp::common::{self, AOCResult};
+use aoc2021_niels_overkamp::common::{self, AOCResult};
 
 const DAY: &str = "{{.day}}";
 
