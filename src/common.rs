@@ -165,7 +165,7 @@ fn test<F: AOCProgram>(prog: &F, input: &Vec<String>, expected: [Option<&str>; 2
         if succeeded[0].unwrap() {
             println!("{}: Result 1 succeeded", path)
         } else {
-            eprintln!("{}: Result 1 failed: Wrong output for input {:?}.\n\tExpected {}\n\tReceived {}",
+            eprintln!("{}: Result 1 failed: Wrong output for input {:?}.\n\tExpected \"{}\"\n\tReceived \"{}\"",
                       path, &input[..10.min(input.len())], expected[0].as_ref().unwrap(), result[0].as_ref().unwrap());
         }
     }
