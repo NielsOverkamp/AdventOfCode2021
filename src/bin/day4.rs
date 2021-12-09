@@ -46,7 +46,7 @@ pub fn run(input: &Vec<String>) -> AOCResult {
 
     let mut call_iter = calls.iter();
 
-    'call_loop: for call in call_iter.by_ref() {
+    'call_loop1: for call in call_iter.by_ref() {
         for mut card in cards.iter_mut() {
             mark_number(*call, &mut card);
         }
@@ -55,14 +55,14 @@ pub fn run(input: &Vec<String>) -> AOCResult {
                 first_win_res = Some(card.iter().map(|line|
                     line.iter().map(|cell| cell.unwrap_or(0)).sum::<i32>())
                     .sum::<i32>() * call);
-                break 'call_loop
+                break 'call_loop1
             }
         }
     }
 
     let mut last_win_res: Option<i32> = None;
 
-    'call_loop: for call in call_iter {
+    'call_loop2: for call in call_iter {
         for mut card in cards.iter_mut() {
             mark_number(*call, &mut card);
         }
@@ -72,7 +72,7 @@ pub fn run(input: &Vec<String>) -> AOCResult {
             last_win_res = Some(&cards[0].iter().map(|line|
                 line.iter().map(|cell| cell.unwrap_or(0)).sum::<i32>())
                 .sum::<i32>() * call);
-            break 'call_loop
+            break 'call_loop2
         } else if cards.len() == 0 {
             return Err("Multiple cards called simultanous last bingo".into());
         }

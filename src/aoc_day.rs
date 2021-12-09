@@ -107,14 +107,7 @@ impl Part {
             Part::TWO => "two",
         }
     }
-
-    pub fn as_test(&self) -> &'static str {
-        match self {
-            Part::ONE => "test_part_one",
-            Part::TWO => "test_part_two",
-        }
-    }
-
+    
     pub fn as_digit(&self) -> u8 {
         match self {
             Part::ONE => 1,
