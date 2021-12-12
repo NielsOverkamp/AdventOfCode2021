@@ -97,7 +97,7 @@ pub fn run_prog<F: AOCProgram>(day: &str, prog: &F) {
 
 
 pub fn run_test<F: AOCProgram>(day: &str, prog: &F) -> bool {
-    let expected_re: regex::Regex = regex::Regex::new(r"([^\$]+)?(?:\$([^\$]+))?").unwrap();
+    let expected_re: regex::Regex = regex::Regex::new(r"^([^\$]+)?(?:\$([^\$]+))?$").unwrap();
 
     let inputs = files_to_vec(day, "./test_inputs");
 
