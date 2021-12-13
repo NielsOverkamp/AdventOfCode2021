@@ -2,7 +2,9 @@ use std::collections::{HashMap, HashSet};
 
 use itertools::Itertools;
 use petgraph::algo::all_simple_paths;
-use petgraph::graph::{NodeIndex, UnGraph};
+use petgraph::dot;
+use petgraph::dot::Dot;
+use petgraph::graph::UnGraph;
 use petgraph::prelude::EdgeRef;
 
 use aoc2021_niels_overkamp::common::{self, AOCResult};
@@ -15,7 +17,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 pub fn run(input: &Vec<String>) -> AOCResult {
     let mut nx: u32 = 1;
-    let mut nx_map = HashMap::from([("start", 0), ("end",1)]);
+    let mut nx_map = HashMap::from([("start", 0), ("end", 1)]);
     let mut large_caves = HashSet::new();
     let mut small_caves = HashSet::new();
 
@@ -45,7 +47,7 @@ pub fn run(input: &Vec<String>) -> AOCResult {
     let mut large_cave_neighbours = HashMap::new();
     while i < edges.len() {
         let (c1, c2) = edges.get(i).unwrap();
-        if large_caves.contains(c1)  {
+        if large_caves.contains(c1) {
             let (c1, c2) = edges.remove(i);
             large_cave_map.entry(c1).or_insert(Vec::new()).push(c2);
             *large_cave_neighbours.entry(c2).or_insert(0) += 1;
@@ -67,7 +69,9 @@ pub fn run(input: &Vec<String>) -> AOCResult {
 
     let mut g = UnGraph::<u32, ()>::from_edges(edges);
 
-    let res1=  all_simple_paths::<Vec<_>, _>(&g, 0.into(), 1.into(), 0, None)
+    println!("{:?}", Dot::with_config(&g, &[dot::Config::EdgeNoLabel]));
+
+    let res1 = all_simple_paths::<Vec<_>, _>(&g, 0.into(), 1.into(), 0, None)
         .count();
 
     let mut res2 = res1;

@@ -3,4 +3,5 @@
 *.iml
 inputs/
 outputs/
+debug_outputs/
 web/cookie
