@@ -124,7 +124,6 @@ pub fn run<'a>(input: &Vec<String>) -> AOCResult {
 
     let mut mappings = HashMap::new();
 
-    println!("{:?} {:?}", root_nodes, g.index(root_nodes[0]));
     let mut last_iteration = 39;
 
     for iteration in 0..(40 as u32) {
@@ -135,8 +134,6 @@ pub fn run<'a>(input: &Vec<String>) -> AOCResult {
             break;
         }
     }
-
-    println!("{:?}", last_iteration);
 
     println!("{:?}", Dot::new(&g));
 
@@ -170,13 +167,11 @@ pub fn run<'a>(input: &Vec<String>) -> AOCResult {
     for ix in root_nodes.iter() {
         let (vec10, vec40, pair) = match *g.index(*ix) {
             Pattern::Rec(pair) => {
-                println!("rec");
                 let vec = &count_mappings[&pair];
                 (&vec[9], &vec[39], pair)
             }
             Pattern::RecEnd(_) => panic!(),
             Pattern::Ref(pair, i) => {
-                println!("ref {}", i);
                 let vec = &count_mappings[&pair];
                 (&vec[i-32], &vec[i-2], pair)
             }
@@ -189,8 +184,6 @@ pub fn run<'a>(input: &Vec<String>) -> AOCResult {
             total_count10[i] += vec10[i];
             total_count40[i] += vec40[i];
         }
-        println!("{:?} {:?}", vec10, vec40);
-        println!("{:?} {:?}", total_count10, total_count40);
     }
 
 
